@@ -10,6 +10,19 @@ const server = express();
 
 server.use(bodyParser.json());
 
+server.use((req, res, next) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
+    res.setHeader('Access-Control-Allow-Methods',
+    'GET, POST, PATCH, DELETE'
+    );
+  next()
+})
+
 server.use('/api/places', placesRoutes); // => /api/places...
 
 server.use('/api/users', usersRoutes)
@@ -27,7 +40,7 @@ server.use((error, req, res, next) => {
   res.json({message: error.message || 'An unknown error occurred!'});
 });
 mongoose
-  .connect('mongodb+srv://rm:btsleader@cluster0.vlfvq.mongodb.net/places?retryWrites=true&w=majority')
+  .connect('mongodb+srv://rm:btsleader@cluster0.vlfvq.mongodb.net/mern?retryWrites=true&w=majority')
   .then(() =>{
     server.listen(5000);
   })
