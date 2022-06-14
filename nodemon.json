@@ -1,0 +1,8 @@
+{
+    "env": {
+        "DB_USER": "rm",
+        "DB_PASSWORD": "btsleader",
+        "DB_NAME": "mern",
+        "JWT_KEY": "supersecret_dont_share"
+    }
+}
